@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Membership Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #f3f5fb;
+            --panel: #ffffff;
+            --charcoal: #3f3f3f;
+            --charcoal-2: #444444;
+            --gold: #cda32d;
+            --slate: #768aa3;
+
+            --tile-pink: #f2c9cf;
+            --tile-green: #d7e6a8;
+            --tile-yellow: #f1ddaa;
+            --tile-rose: #f2cbd0;
+        }
+
+        body {
+            background: var(--bg);
+            color: #111;
+        }
+
+        /* ====== NAVBAR ====== */
+        .topbar {
+            background: #121316;
+            color: #fff;
+            border-bottom: 2px solid rgba(205, 163, 45, .25);
+        }
+
+        .brand-badge {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--gold);
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        /* ====== LAYOUT WRAPPER ====== */
+        .site-wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Desktop: sidebar visible */
+        .sidebar {
+            background: #15171b;
+            color: #fff;
+            border-radius: 16px;
+            padding: 14px;
+            position: sticky;
+            top: 84px;
+            height: calc(100vh - 110px);
+            overflow: auto;
+        }
+
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, .8);
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+        }
+
+        .sidebar .nav-link.active,
+        .sidebar .nav-link:hover {
+            background: rgba(205, 163, 45, .14);
+            color: #fff;
+        }
+
+        /* Right panel */
+        .right-panel {
+            background: var(--panel);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+            position: sticky;
+            top: 84px;
+        }
+
+        /* ====== APP CARD (THIS IS YOUR MOBILE VIEW) ====== */
+        .app-card {
+            background: var(--panel);
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .08);
+            overflow: hidden;
+        }
+
+        .app-inner {
+            background: #e9edf6;
+            padding: 14px;
+        }
+
+        .top-card {
+            background: var(--charcoal);
+            border-radius: 14px;
+            padding: 16px;
+            color: #fff;
+            border: 2px solid rgba(205, 163, 45, .35);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 999px;
+            border: 3px solid #fff;
+            object-fit: cover;
+            flex: 0 0 auto;
+        }
+
+        .top-card h6 {
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .top-card p {
+            margin: 8px 0 0;
+            color: #ddd;
+            line-height: 1.25;
+            font-size: 13px;
+        }
+
+        .tiles {
+            margin-top: 12px;
+            background: var(--charcoal-2);
+            border-radius: 14px;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tile {
+            border-radius: 12px;
+            padding: 10px 10px 12px;
+            min-height: 86px;
+        }
+
+        .tile .name {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .tile .name img {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            object-fit: cover;
+        }
+
+        .tile .num {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 22px;
+            color: #111;
+            letter-spacing: .5px;
+        }
+
+        .tile.pink {
+            background: var(--tile-pink);
+        }
+
+        .tile.green {
+            background: var(--tile-green);
+        }
+
+        .tile.yellow {
+            background: var(--tile-yellow);
+        }
+
+        .tile.rose {
+            background: var(--tile-rose);
+        }
+
+        .callout {
+            margin-top: 12px;
+            background: var(--charcoal-2);
+            border-radius: 14px;
+            padding: 14px;
+            color: #fff;
+        }
+
+        .callout .title {
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .callout p {
+            margin: 0 0 8px;
+            color: #e2e2e2;
+            font-size: 12px;
+            line-height: 1.25;
+        }
+
+        .membership {
+            margin-top: 12px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, .08);
+            background: #fff;
+        }
+
+        .membership .head {
+            padding: 12px 14px;
+            font-weight: 900;
+            letter-spacing: .2px;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .membership.foundation .head {
+            background: var(--gold);
+        }
+
+        .membership.economy .head {
+            background: var(--slate);
+        }
+
+        .membership .body {
+            background: var(--charcoal-2);
+            color: #dedede;
+            padding: 0 14px;
+            font-size: 12px;
+            line-height: 1.35;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .25s ease, padding .25s ease;
+        }
+
+        .membership.open .body {
+            padding: 12px 14px 14px;
+            max-height: 260px;
+        }
+
+        .cta-mini {
+            margin-top: 12px;
+            background: var(--gold);
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .footer-accent {
+            margin-top: 12px;
+            background: var(--gold);
+            color: #fff;
+            text-align: center;
+            font-size: 11px;
+            padding: 10px 12px;
+            border-radius: 0 0 18px 18px;
+            opacity: .96;
+        }
+
+        /* ====== RESPONSIVE: keep mobile app look ====== */
+        .app-shell {
+            max-width: 430px;
+            /* mobile-like width */
+            margin: 0 auto;
+        }
+
+        .wa-float {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            width: 54px;
+            height: 54px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #25D366;
+            /* WhatsApp green */
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+            z-index: 2000;
+        }
+
+        .wa-float i {
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .wa-float:hover {
+            transform: translateY(-2px);
+            transition: transform .15s ease;
+            color: #fff;
+        }
+
+        /* Tablet: widen app + show more site feel */
+        @media (min-width: 768px) {
+            .app-shell {
+                max-width: 100%;
+            }
+
+            .app-card {
+                border-radius: 20px;
+            }
+
+            .app-inner {
+                padding: 16px;
+            }
+        }
+
+        /* Desktop: spacing */
+        @media (min-width: 992px) {
+            .site-wrap {
+                padding: 18px;
+            }
+        }
+
+        /* Hide sidebar on small screens */
+        .sidebar-col {
+            display: none;
+        }
+
+        @media (min-width: 992px) {
+            .sidebar-col {
+                display: block;
+            }
+        }
+
+        /* Right panel hidden on mobile, visible tablet+ */
+        .right-col {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .right-col {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR (works on all sizes) -->
+    <nav class="navbar navbar-expand-lg topbar sticky-top">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand text-white fw-bold" href="#">
+                <span class="brand-badge"></span>Fourfront
+            </a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-warning fw-bold me-2 mt-2 mt-lg-0" data-bs-toggle="modal"
+                            data-bs-target="#joinModal">
+                            Join Membership
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 mt-2 mt-lg-0" href="#" id="themeBtn">Toggle Theme</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="site-wrap">
+        <div class="row g-3">
+            <!-- DESKTOP SIDEBAR -->
+            <div class="col-lg-3 sidebar-col">
+                <aside class="sidebar">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="fw-bold">Menu</div>
+                        <span class="badge text-bg-warning">Live</span>
+                    </div>
+
+                    <a class="nav-link active" href="#dashboard">Dashboard</a>
+                    <a class="nav-link" href="#memberships">Memberships</a>
+                    <a class="nav-link" href="#insights">Insights</a>
+                    <a class="nav-link" href="#support" data-bs-toggle="modal"
+                        data-bs-target="#supportModal">Support</a>
+
+                    <hr class="border-light opacity-25" />
+                    <div class="small text-white-50">Signed in as</div>
+                    <div class="fw-bold">Michael</div>
+                </aside>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="col-12 col-md-8 col-lg-6">
+                <!-- This is the “app” that should look like mobile screenshot -->
+                <div class="app-shell" id="dashboard">
+                    <div class="app-card">
+                        <div class="app-inner">
+                            <!-- Top profile -->
+                            <section class="top-card">
+                                <img class="avatar" src="https://i.pravatar.cc/120?img=12" alt="Michael" />
+                                <div>
+                                    <h6>Michael</h6>
+                                    <p>You’ve officially joined<br />your first investment<br />knowledge club!</p>
+                                </div>
+                            </section>
+
+                            <!-- Tiles -->
+                            <section class="tiles mt-3">
+                                <div class="tile pink">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=52" alt="">
+                                        Bernard Makodingo
+                                    </div>
+                                    <div class="num">350</div>
+                                </div>
+
+                                <div class="tile green">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=24" alt="">
+                                        kigSmall Foot
+                                    </div>
+                                    <div class="num">225</div>
+                                </div>
+
+                                <div class="tile yellow">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=47" alt="">
+                                        Caroline Likhoi
+                                    </div>
+                                    <div class="num">117</div>
+                                </div>
+
+                                <div class="tile rose">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=33" alt="">
+                                        Caroline Likhoi
+                                    </div>
+                                    <div class="num">321</div>
+                                </div>
+                            </section>
+
+                            <!-- Callout -->
+                            <section class="callout">
+                                <div class="title">Now let’s make you great!</div>
+                                <p>You have shown us where you are doing well and where we can support you to be great!
+                                </p>
+                                <p class="mb-0">From your profile we recommend these memberships. Pick one that fits you
+                                    best and start your financial adventure.</p>
+                            </section>
+
+                            <!-- Memberships -->
+                            <div id="memberships"></div>
+
+                            <section id="foundation" class="membership foundation">
+                                <div class="head" role="button" aria-expanded="false">
+                                    <span>FOUNDATION MEMBERSHIP</span>
+                                    <span class="chev">▾</span>
+                                </div>
+                                <div class="body">
+                                    We invest for you, in shares and in the Mansa-X global fund. Service is free online
+                                    with your personal representative,
+                                    but service in the office may have extra charges.
+                                </div>
+                            </section>
+
+                            <section id="economy" class="membership economy">
+                                <div class="head" role="button" aria-expanded="false">
+                                    <span>ECONOMY MEMBERSHIP</span>
+                                    <span class="chev">▾</span>
+                                </div>
+                                <div class="body">
+                                    We will invest your money for you at a guaranteed rate with the Mansa-X global fund.
+                                    Service is free online with your
+                                    personal representative, but service in the office may have extra charges.
+                                </div>
+                            </section>
+
+                            <!-- CTA -->
+                            <div class="cta-mini mt-3" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                <span>A closer look at the membership details</span>
+                                <span class="fw-black">›</span>
+                            </div>
+
+                            <div class="footer-accent">
+                                Fourfront Management © 2025. All Rights Reserved.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra sections (real site content) -->
+                <div class="mt-3 p-3 bg-white rounded-4 shadow-sm" id="insights">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="mb-0 fw-bold">Insights</h6>
+                        <span class="badge text-bg-dark">Updated today</span>
+                    </div>
+                    <div class="mt-2 small text-muted">
+                        Your strongest metric is consistency. Next focus: diversify learning and set a weekly goal.
+                    </div>
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#supportModal">Ask Support</button>
+                        <button class="btn btn-warning btn-sm fw-bold" data-bs-toggle="modal"
+                            data-bs-target="#joinModal">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL (tablet + desktop) -->
+            <div class="col-md-4 col-lg-3 right-col">
+                <aside class="right-panel">
+                    <h6 class="fw-bold mb-2">Quick Actions</h6>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#joinModal">Join /
+                            Upgrade</button>
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal">View
+                            Details</button>
+                    </div>
+
+                    <hr />
+
+                    <h6 class="fw-bold mb-2">Notifications</h6>
+                    <div class="small text-muted">
+                        • New membership guide available<br />
+                        • Your weekly goal is ready<br />
+                        • Support is online
+                    </div>
+
+                    <hr />
+
+                    <h6 class="fw-bold mb-2">Contact</h6>
+                    <div class="small text-muted">
+                        Email: support@fourfront.test<br />
+                        Phone: +254 700 000 000
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAILS MODAL -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Membership Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2"><strong>Foundation:</strong> Beginner-friendly, guided learning, and low commitment.
+                    </p>
+                    <p class="mb-0"><strong>Economy:</strong> Guaranteed rate focus, more structured, and higher
+                        guidance.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-warning fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#joinModal">Join</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOIN MODAL (FORM VALIDATION) -->
+    <div class="modal fade" id="joinModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Join Membership</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="joinForm" novalidate>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com"
+                                required />
+                            <div class="invalid-feedback">Enter a valid email.</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Choose plan</label>
+                            <select class="form-select" id="plan" required>
+                                <option value="">Select...</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="economy">Economy</option>
+                            </select>
+                            <div class="invalid-feedback">Please choose a plan.</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Weekly goal</label>
+                            <input type="number" class="form-control" id="goal" min="1" max="20" placeholder="e.g. 3"
+                                required />
+                            <div class="invalid-feedback">Enter a goal between 1 and 20.</div>
+                        </div>
+
+                        <div id="joinMsg" class="small mt-2"></div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT MODAL -->
+    <div class="modal fade" id="supportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Support</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">Tell us what you need help with:</p>
+                    <textarea class="form-control" rows="4" placeholder="Type your message..."></textarea>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-dark" data-bs-dismiss="modal">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/254700000000?text=Hi%20Support%2C%20I%20need%20help%20with%20my%20membership."
+        target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Membership toggle (Foundation & Economy)
+        function setupToggle(cardId) {
+            const card = document.getElementById(cardId);
+            const head = card.querySelector(".head");
+            const chev = head.querySelector(".chev");
+
+            head.addEventListener("click", () => {
+                const isOpen = card.classList.toggle("open");
+                head.setAttribute("aria-expanded", String(isOpen));
+                chev.textContent = isOpen ? "▴" : "▾";
+            });
+        }
+        setupToggle("foundation");
+        setupToggle("economy");
+
+        // Form validation (Join modal)
+        const joinForm = document.getElementById("joinForm");
+        joinForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email");
+            const plan = document.getElementById("plan");
+            const goal = document.getElementById("goal");
+            const msg = document.getElementById("joinMsg");
+
+            // reset
+            [email, plan, goal].forEach(el => el.classList.remove("is-invalid", "is-valid"));
+            msg.className = "small mt-2";
+            msg.textContent = "";
+
+            let ok = true;
+
+            // email
+            if (!email.value || !email.value.includes("@") || !email.value.includes(".")) {
+                email.classList.add("is-invalid");
+                ok = false;
+            } else email.classList.add("is-valid");
+
+            // plan
+            if (!plan.value) {
+                plan.classList.add("is-invalid");
+                ok = false;
+            } else plan.classList.add("is-valid");
+
+            // goal
+            const gv = Number(goal.value);
+            if (!gv || gv < 1 || gv > 20) {
+                goal.classList.add("is-invalid");
+                ok = false;
+            } else goal.classList.add("is-valid");
+
+            if (ok) {
+                msg.classList.add("text-success");
+                msg.textContent = "Success! You’re enrolled. Check your email for next steps.";
+                // optionally close modal after a moment:
+                // setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('joinModal')).hide(), 900);
+                joinForm.reset();
+                [email, plan, goal].forEach(el => el.classList.remove("is-valid"));
+            } else {
+                msg.classList.add("text-danger");
+                msg.textContent = "Please fix the highlighted fields.";
+            }
+        });
+
+        // Theme toggle (simple interactivity)
+        const themeBtn = document.getElementById("themeBtn");
+        let darkMode = false;
+        themeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            darkMode = !darkMode;
+
+            document.body.style.background = darkMode ? "#0f1115" : "var(--bg)";
+            document.body.style.color = darkMode ? "#fff" : "#111";
+        });
+    </script>
+</body>
+
+</html>

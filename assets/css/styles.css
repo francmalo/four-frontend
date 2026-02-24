@@ -1,0 +1,264 @@
+:root{
+  --bg: #f3f5fb;
+  --panel: #ffffff;
+  --charcoal: #3f3f3f;
+  --charcoal-2: #444444;
+  --gold: #cda32d;
+  --slate: #768aa3;
+
+  --tile-pink:#f2c9cf;
+  --tile-green:#d7e6a8;
+  --tile-yellow:#f1ddaa;
+  --tile-rose:#f2cbd0;
+}
+
+body{
+  background: var(--bg);
+  color:#111;
+}
+
+/* NAVBAR */
+.topbar{
+  background:#121316;
+  color:#fff;
+  border-bottom: 2px solid rgba(205,163,45,.25);
+}
+.brand-badge{
+  width:10px;height:10px;border-radius:999px;background:var(--gold);display:inline-block;margin-right:10px;
+}
+
+/* Layout */
+.site-wrap{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Sidebar (desktop only) */
+.sidebar{
+  background: #15171b;
+  color:#fff;
+  border-radius: 16px;
+  padding: 14px;
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 110px);
+  overflow:auto;
+}
+.sidebar .nav-link{
+  color: rgba(255,255,255,.8);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover{
+  background: rgba(205,163,45,.14);
+  color:#fff;
+}
+
+/* Right panel */
+.right-panel{
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  position: sticky;
+  top: 84px;
+}
+
+/* App Card (mobile look) */
+.app-card{
+  background: var(--panel);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+.app-inner{
+  background: #e9edf6;
+  padding: 14px;
+}
+.app-shell{
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+/* Top profile */
+.top-card{
+  background: var(--charcoal);
+  border-radius: 14px;
+  padding: 16px;
+  color:#fff;
+  border: 2px solid rgba(205,163,45,.35);
+  display:flex;
+  gap: 14px;
+  align-items:flex-start;
+}
+.avatar{
+  width:64px;height:64px;border-radius:999px;border:3px solid #fff;object-fit:cover;
+  flex: 0 0 auto;
+}
+.top-card h6{ margin:0; font-weight:800; }
+.top-card p{ margin:8px 0 0; color:#ddd; line-height:1.25; font-size: 13px; }
+
+/* Tiles */
+.tiles{
+  margin-top: 12px;
+  background: var(--charcoal-2);
+  border-radius: 14px;
+  padding: 10px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.tile{
+  border-radius: 12px;
+  padding: 10px 10px 12px;
+  min-height: 86px;
+}
+.tile .name{
+  display:flex;
+  gap: 8px;
+  align-items:center;
+  font-size: 11px;
+  font-weight: 700;
+  color:#222;
+}
+.tile .name img{
+  width:26px;height:26px;border-radius:999px;object-fit:cover;
+}
+.tile .num{
+  margin-top: 10px;
+  text-align:center;
+  font-weight:900;
+  font-size: 22px;
+  color:#111;
+  letter-spacing:.5px;
+}
+.tile.pink{ background: var(--tile-pink); }
+.tile.green{ background: var(--tile-green); }
+.tile.yellow{ background: var(--tile-yellow); }
+.tile.rose{ background: var(--tile-rose); }
+
+/* Callout */
+.callout{
+  margin-top: 12px;
+  background: var(--charcoal-2);
+  border-radius: 14px;
+  padding: 14px;
+  color:#fff;
+}
+.callout .title{
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.callout p{
+  margin: 0 0 8px;
+  color:#e2e2e2;
+  font-size: 12px;
+  line-height:1.25;
+}
+
+/* Membership */
+.membership{
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid rgba(0,0,0,.08);
+  background:#fff;
+}
+.membership .head{
+  padding: 12px 14px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  font-size: 13px;
+  cursor:pointer;
+  user-select:none;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  color:#fff;
+}
+.membership.foundation .head{ background: var(--gold); }
+.membership.economy .head{ background: var(--slate); }
+
+.membership .body{
+  background: var(--charcoal-2);
+  color:#dedede;
+  padding: 0 14px;
+  font-size: 12px;
+  line-height: 1.35;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s ease, padding .25s ease;
+}
+.membership.open .body{
+  padding: 12px 14px 14px;
+  max-height: 260px;
+}
+
+/* CTA + footer */
+.cta-mini{
+  margin-top: 12px;
+  background: var(--gold);
+  color:#fff;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  cursor:pointer;
+}
+.footer-accent{
+  margin-top: 12px;
+  background: var(--gold);
+  color:#fff;
+  text-align:center;
+  font-size: 11px;
+  padding: 10px 12px;
+  border-radius: 0 0 18px 18px;
+  opacity:.96;
+}
+
+/* Floating WhatsApp icon */
+.wa-float{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  z-index: 2000;
+}
+.wa-float i{
+  font-size: 28px;
+  line-height: 1;
+}
+.wa-float:hover{
+  transform: translateY(-2px);
+  transition: transform .15s ease;
+  color:#fff;
+}
+
+/* Responsive columns visibility */
+.sidebar-col{ display:none; }
+@media (min-width: 992px){
+  .sidebar-col{ display:block; }
+  .site-wrap{ padding: 18px; }
+}
+.right-col{ display:none; }
+@media (min-width: 768px){
+  .right-col{ display:block; }
+  .app-shell{ max-width: 100%; }
+  .app-card{ border-radius: 20px; }
+  .app-inner{ padding: 16px; }
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Membership Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons (for WhatsApp icon) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg topbar sticky-top">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand text-white fw-bold" href="#">
+                <span class="brand-badge"></span>Fourfront
+            </a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-warning fw-bold me-2 mt-2 mt-lg-0" data-bs-toggle="modal"
+                            data-bs-target="#joinModal">
+                            Join Membership
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 mt-2 mt-lg-0" href="#" id="themeBtn">Toggle Theme</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="site-wrap">
+        <div class="row g-3">
+
+            <!-- DESKTOP SIDEBAR -->
+            <div class="col-lg-3 sidebar-col">
+                <aside class="sidebar">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="fw-bold">Menu</div>
+                        <span class="badge text-bg-warning">Live</span>
+                    </div>
+
+                    <a class="nav-link active" href="#dashboard">Dashboard</a>
+                    <a class="nav-link" href="#memberships">Memberships</a>
+                    <a class="nav-link" href="#insights">Insights</a>
+                    <a class="nav-link" href="#support" data-bs-toggle="modal"
+                        data-bs-target="#supportModal">Support</a>
+
+                    <hr class="border-light opacity-25" />
+                    <div class="small text-white-50">Signed in as</div>
+                    <div class="fw-bold">Michael</div>
+                </aside>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="app-shell" id="dashboard">
+                    <div class="app-card">
+                        <div class="app-inner">
+
+                            <!-- Top profile -->
+                            <section class="top-card">
+                                <img class="avatar" src="https://i.pravatar.cc/120?img=12" alt="Michael" />
+                                <div>
+                                    <h6>Michael</h6>
+                                    <p>You’ve officially joined<br />your first investment<br />knowledge club!</p>
+                                </div>
+                            </section>
+
+                            <!-- Tiles -->
+                            <section class="tiles mt-3">
+                                <div class="tile pink">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=52" alt="">
+                                        Bernard Makodingo
+                                    </div>
+                                    <div class="num">350</div>
+                                </div>
+
+                                <div class="tile green">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=24" alt="">
+                                        kigSmall Foot
+                                    </div>
+                                    <div class="num">225</div>
+                                </div>
+
+                                <div class="tile yellow">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=47" alt="">
+                                        Caroline Likhoi
+                                    </div>
+                                    <div class="num">117</div>
+                                </div>
+
+                                <div class="tile rose">
+                                    <div class="name">
+                                        <img src="https://i.pravatar.cc/80?img=33" alt="">
+                                        Caroline Likhoi
+                                    </div>
+                                    <div class="num">321</div>
+                                </div>
+                            </section>
+
+                            <!-- Callout -->
+                            <section class="callout">
+                                <div class="title">Now let’s make you great!</div>
+                                <p>You have shown us where you are doing well and where we can support you to be great!
+                                </p>
+                                <p class="mb-0">From your profile we recommend these memberships. Pick one that fits you
+                                    best and start your financial adventure.</p>
+                            </section>
+
+                            <div id="memberships"></div>
+
+                            <!-- Memberships -->
+                            <section id="foundation" class="membership foundation">
+                                <div class="head" role="button" aria-expanded="false">
+                                    <span>FOUNDATION MEMBERSHIP</span>
+                                    <span class="chev">▾</span>
+                                </div>
+                                <div class="body">
+                                    We invest for you, in shares and in the Mansa-X global fund. Service is free online
+                                    with your personal representative,
+                                    but service in the office may have extra charges.
+                                </div>
+                            </section>
+
+                            <section id="economy" class="membership economy">
+                                <div class="head" role="button" aria-expanded="false">
+                                    <span>ECONOMY MEMBERSHIP</span>
+                                    <span class="chev">▾</span>
+                                </div>
+                                <div class="body">
+                                    We will invest your money for you at a guaranteed rate with the Mansa-X global fund.
+                                    Service is free online with your
+                                    personal representative, but service in the office may have extra charges.
+                                </div>
+                            </section>
+
+                            <!-- CTA -->
+                            <div class="cta-mini mt-3" data-bs-toggle="modal" data-bs-target="#detailsModal">
+                                <span>A closer look at the membership details</span>
+                                <span class="fw-black">›</span>
+                            </div>
+
+                            <div class="footer-accent">
+                                Fourfront Management © 2025. All Rights Reserved.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra section -->
+                <div class="mt-3 p-3 bg-white rounded-4 shadow-sm" id="insights">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="mb-0 fw-bold">Insights</h6>
+                        <span class="badge text-bg-dark">Updated today</span>
+                    </div>
+                    <div class="mt-2 small text-muted">
+                        Your strongest metric is consistency. Next focus: diversify learning and set a weekly goal.
+                    </div>
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#supportModal">Ask Support</button>
+                        <button class="btn btn-warning btn-sm fw-bold" data-bs-toggle="modal"
+                            data-bs-target="#joinModal">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="col-md-4 col-lg-3 right-col">
+                <aside class="right-panel">
+                    <h6 class="fw-bold mb-2">Quick Actions</h6>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#joinModal">Join /
+                            Upgrade</button>
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal">View
+                            Details</button>
+                    </div>
+
+                    <hr />
+
+                    <h6 class="fw-bold mb-2">Notifications</h6>
+                    <div class="small text-muted">
+                        • New membership guide available<br />
+                        • Your weekly goal is ready<br />
+                        • Support is online
+                    </div>
+
+                    <hr />
+
+                    <h6 class="fw-bold mb-2">Contact</h6>
+                    <div class="small text-muted">
+                        Email: support@fourfront.test<br />
+                        Phone: +254 700 000 000
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/254700000000?text=Hi%20Support%2C%20I%20need%20help%20with%20my%20membership."
+        target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- DETAILS MODAL -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Membership Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2"><strong>Foundation:</strong> Beginner-friendly, guided learning, and low commitment.
+                    </p>
+                    <p class="mb-0"><strong>Economy:</strong> Guaranteed rate focus, more structured, and higher
+                        guidance.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-warning fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#joinModal">Join</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOIN MODAL -->
+    <div class="modal fade" id="joinModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Join Membership</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="joinForm" novalidate>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com"
+                                required />
+                            <div class="invalid-feedback">Enter a valid email.</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Choose plan</label>
+                            <select class="form-select" id="plan" required>
+                                <option value="">Select...</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="economy">Economy</option>
+                            </select>
+                            <div class="invalid-feedback">Please choose a plan.</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Weekly goal</label>
+                            <input type="number" class="form-control" id="goal" min="1" max="20" placeholder="e.g. 3"
+                                required />
+                            <div class="invalid-feedback">Enter a goal between 1 and 20.</div>
+                        </div>
+
+                        <div id="joinMsg" class="small mt-2"></div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT MODAL -->
+    <div class="modal fade" id="supportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Support</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">Tell us what you need help with:</p>
+                    <textarea class="form-control" rows="4" placeholder="Type your message..."></textarea>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-dark" data-bs-dismiss="modal">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your JS -->
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
