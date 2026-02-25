@@ -4,10 +4,10 @@ A fully responsive membership dashboard built using:
 
 - HTML5
 - CSS
-- JavaScript (Vanilla JS)
+- JavaScript 
 - Bootstrap 5
 
-This project recreates an investment membership interface 
+
 
 ---
 
@@ -21,7 +21,7 @@ This project recreates an investment membership interface
 ### ✅ Interactive Features
 - Toggle Foundation & Economy membership descriptions
 - Modal popups (Join Membership, Details, Support)
-- Form validation (email, plan selection, weekly goal)
+- Form validation
 - Theme toggle (light/dark mode)
 - Floating WhatsApp support button
 

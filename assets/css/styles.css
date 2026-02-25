@@ -17,7 +17,7 @@ body{
   color:#111;
 }
 
-/* NAVBAR */
+/* Navbar */
 .topbar{
   background:#121316;
   color:#fff;
@@ -34,7 +34,7 @@ body{
   padding: 16px;
 }
 
-/* Sidebar (desktop only) */
+/* Sidebar  */
 .sidebar{
   background: #15171b;
   color:#fff;
@@ -66,7 +66,7 @@ body{
   top: 84px;
 }
 
-/* App Card (mobile look) */
+/* App Card (mobile) */
 .app-card{
   background: var(--panel);
   border-radius: 18px;
@@ -75,7 +75,7 @@ body{
 }
 .app-inner{
   background: #e9edf6;
-  padding: 14px;
+  padding: 10px;
 }
 .app-shell{
   max-width: 430px;
@@ -85,13 +85,20 @@ body{
 /* Top profile */
 .top-card{
   background: var(--charcoal);
-  border-radius: 14px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 14px;
   color:#fff;
   border: 2px solid rgba(205,163,45,.35);
   display:flex;
-  gap: 14px;
+  gap: 12px;
   align-items:flex-start;
+  margin: 0;                     
+}
+.stack{
+  background: var(--charcoal-2);  
+  border-radius: 14px;
+  padding: 10px;                 
+  margin-top: 12px;              
 }
 .avatar{
   width:64px;height:64px;border-radius:999px;border:3px solid #fff;object-fit:cover;
@@ -100,12 +107,11 @@ body{
 .top-card h6{ margin:0; font-weight:800; }
 .top-card p{ margin:8px 0 0; color:#ddd; line-height:1.25; font-size: 13px; }
 
-/* Tiles */
 .tiles{
-  margin-top: 12px;
-  background: var(--charcoal-2);
-  border-radius: 14px;
-  padding: 10px;
+  margin-top: 10px;               
+  background: transparent;        
+  border-radius: 0;
+  padding: 0;                    
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -249,7 +255,7 @@ body{
   color:#fff;
 }
 
-/* Responsive columns visibility */
+
 .sidebar-col{ display:none; }
 @media (min-width: 992px){
   .sidebar-col{ display:block; }

@@ -1,4 +1,4 @@
-// Membership toggle (Foundation & Economy)
+// Membership toggle 
 function setupToggle(cardId){
   const card = document.getElementById(cardId);
   if (!card) return;
@@ -16,7 +16,7 @@ function setupToggle(cardId){
 setupToggle("foundation");
 setupToggle("economy");
 
-// Form validation (Join modal)
+
 const joinForm = document.getElementById("joinForm");
 if (joinForm){
   joinForm.addEventListener("submit", (e) => {
@@ -27,26 +27,26 @@ if (joinForm){
     const goal  = document.getElementById("goal");
     const msg   = document.getElementById("joinMsg");
 
-    // reset
+  
     [email, plan, goal].forEach(el => el.classList.remove("is-invalid", "is-valid"));
     msg.className = "small mt-2";
     msg.textContent = "";
 
     let ok = true;
 
-    // email
+ 
     if (!email.value || !email.value.includes("@") || !email.value.includes(".")){
       email.classList.add("is-invalid");
       ok = false;
     } else email.classList.add("is-valid");
 
-    // plan
+    
     if (!plan.value){
       plan.classList.add("is-invalid");
       ok = false;
     } else plan.classList.add("is-valid");
 
-    // goal
+   
     const gv = Number(goal.value);
     if (!gv || gv < 1 || gv > 20){
       goal.classList.add("is-invalid");
@@ -65,7 +65,7 @@ if (joinForm){
   });
 }
 
-// Theme toggle
+
 const themeBtn = document.getElementById("themeBtn");
 let darkMode = false;
 
